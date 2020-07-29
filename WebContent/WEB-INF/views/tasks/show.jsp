@@ -8,24 +8,30 @@
 			<c:when test="${Task != null}">
 				<h2>id : ${Task.id} のタスク詳細ページ</h2>
 
-				<p>
-					タスク：
-					<c:out value="${Task.content}" />
-				</p>
-				<p>
-					作成日時：
-					<fmt:formatDate value="${Task.created_at}"
-						pattern="yyyy-MM-dd HH:mm:ss" />
-				</p>
-				<p>
-					更新日時：
-					<fmt:formatDate value="${Task.updated_at}"
-						pattern="yyyy-MM-dd HH:mm:ss" />
-				</p>
+				<table>
+					<tbody>
+						
+						<tr>
+							<th>タスク</th>
+							<td><c:out value="${Task.content}" /></td>
+						</tr>
+						<tr>
+							<th>作成日時</th>
+							<td><fmt:formatDate value="${Task.created_at}"
+									pattern="yyyy-MM-dd HH:mm:ss" /></td>
+						</tr>
+						<tr>
+							<th>更新日時</th>
+							<td><fmt:formatDate value="${Task.updated_at}"
+									pattern="yyyy-MM-dd HH:mm:ss" /></td>
+						</tr>
+					</tbody>
+				</table>
 
 				<p>
 					<a href="${pageContext.request.contextPath}/index">一覧に戻る</a>
 				</p>
+
 				<p>
 					<a href="${pageContext.request.contextPath}/edit?id=${Task.id}">このタスクを編集する</a>
 				</p>
