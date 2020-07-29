@@ -5,7 +5,7 @@
 <c:import url="../layout/app.jsp">
 	<c:param name="content">
 
-		<h2>id : ${Task.id} のメッセージ詳細ページ</h2>
+		<h2>id : ${Task.id} のタスク詳細ページ</h2>
 
 
 		<p>
@@ -23,9 +23,6 @@
 				pattern="yyyy-MM-dd HH:mm:ss" />
 		</p>
 
-		<p>
-			<a href="${pageContext.request.contextPath}/index">一覧に戻る</a>
-		</p>
 		<p>
 			<a href="${pageContext.request.contextPath}/index">一覧に戻る</a>
 		</p>
