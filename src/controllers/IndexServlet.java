@@ -37,11 +37,24 @@ public class IndexServlet extends HttpServlet {
 			throws ServletException, IOException {
 		EntityManager em = DBUtil.createEntityManager();
 
-		List<Task> tasks = em.createNamedQuery("getAllMessages", Task.class).getResultList();
+		int page = 1;
+		try {
+			page = Integer.parseInt(request.getParameter("page"));
+		} catch (NumberFormatException e) {
+		}
+
+		// 最大件数と開始位置を指定してメッセージを取得
+		List<Task> tasks = em.createNamedQuery("getAllMessages", Task.class).setFirstResult(15 * (page - 1))
+				.setMaxResults(15).getResultList();
+
+		// 全件数を取得
+		long tasks_count = (long) em.createNamedQuery("getMessagesCount", Long.class).getSingleResult();
 
 		em.close();
 
 		request.setAttribute("tasks", tasks);
+		request.setAttribute("tasks_count", tasks_count); // 全件数
+		request.setAttribute("page", page);
 
 		if (request.getSession().getAttribute("flush") != null) {
 			request.setAttribute("flush", request.getSession().getAttribute("flush"));
